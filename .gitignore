@@ -7,3 +7,8 @@ benchmark_sources/third_party/*
 benchmark_sources/tflite-micro
 benchmark_sources/tensorflow/*
 benchmark_sources/signal/*
+
+benchmark_sources/models/cifar10_resnet8/dataset/*
+benchmark_sources/models/vww/dataset/*
+
+__pycache__/

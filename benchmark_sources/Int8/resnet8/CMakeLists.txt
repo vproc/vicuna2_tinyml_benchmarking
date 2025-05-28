@@ -1,0 +1,1 @@
+add_Benchmark(resnet8_int8 ${CMAKE_CURRENT_SOURCE_DIR} ${BUILD_DIR}/benchmark_sources/Int8/resnet8)
