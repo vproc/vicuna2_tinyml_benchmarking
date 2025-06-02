@@ -21,7 +21,7 @@ else
     echo "Making Toolchain Directory"
     mkdir toolchain
 fi
-cd Scripts
+cd scripts
 ######
 #   Verilator setup
 ######
