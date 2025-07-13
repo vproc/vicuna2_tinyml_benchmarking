@@ -234,7 +234,7 @@ int main(int argc, char **argv) {
                 
             
             
-            bool main_reached = false; //detect if main has been reached to begin collecting statistics
+            bool main_reached = true; //detect if main has been reached to begin collecting statistics
             bool exiting = false;
             
             //Variables for stall detection
@@ -245,6 +245,8 @@ int main(int argc, char **argv) {
             
             //Variables for processor metrics
             int cycles = 0;         //Cycle count
+            int current_WB_PC = 0;
+            int last_WB_PC = 0;
             int instructions = 0;   //Instruction Count
             
             
@@ -280,6 +282,7 @@ int main(int argc, char **argv) {
 #endif
                 //update last IF_PC
                 last_IF_PC = current_IF_PC;
+                last_WB_PC = current_WB_PC;
 
                 // fulfill request on the normal memory port
                 // read memory request
@@ -457,6 +460,7 @@ int main(int argc, char **argv) {
                 }
                 
                 //Cycle count and instruction count
+                current_WB_PC = top->vproc_top->core->instruction_wb_pc;
                 if(main_reached) {
                     if(!exiting)
                     {
@@ -466,7 +470,7 @@ int main(int argc, char **argv) {
                         }
                     }
                     abort_cnt = (top->mem_req_o == mem_req_o_tmp) ? abort_cnt + 1 : 0;
-                    if ((current_IF_PC != last_IF_PC) && !exiting)
+                    if ((current_WB_PC != last_WB_PC) && !exiting)
                     {
                         instructions++;
                     }
