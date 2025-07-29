@@ -234,7 +234,7 @@ int main(int argc, char **argv) {
                 
             
             
-            bool main_reached = true; //detect if main has been reached to begin collecting statistics
+            bool main_reached = false; //detect if main has been reached to begin collecting statistics
             bool exiting = false;
             
             //Variables for stall detection
@@ -264,8 +264,8 @@ int main(int argc, char **argv) {
             float sum_vec_percentage = 0.0;
             int num_vec_instr = 0;
            
-            int  cycles_begin_trace = 0;  //Trace begins at this cycle count.  TODO: expose to the command line
-            
+            int  cycles_begin_trace = 2806342;  //Trace begins at this cycle count.  TODO: expose to the command line
+            //int  cycles_begin_trace = 4000000;            
             while (end_cnt < extra_cycles) {
                 // if ABORT_CYCLES is defined, then it specifies the number of cycles after which
                 // simulation is aborted in case there is no activity on the memory interface
@@ -462,17 +462,23 @@ int main(int argc, char **argv) {
                 //Cycle count and instruction count
                 current_WB_PC = top->vproc_top->core->instruction_wb_pc;
                 if(main_reached) {
-                    if(!exiting)
-                    {
-                        cycles++;
-                        if (inst_trace_out == 1) {
-                            fprintf(inst_trace, "%08x\n", top->vproc_top->core->instruction_wb);
-                        }
-                    }
+                    
                     abort_cnt = (top->mem_req_o == mem_req_o_tmp) ? abort_cnt + 1 : 0;
                     if ((current_WB_PC != last_WB_PC) && !exiting)
                     {
                         instructions++;
+                        //mark trace file for new instruction in wb
+                        if (inst_trace_out == 1) {
+                            fprintf(inst_trace, "NEW PC\n");
+                        }
+                    }
+                    if(!exiting)
+                    {
+                        cycles++;
+                        if (inst_trace_out == 1) {
+                            //fprintf(inst_trace, "PC %08x\n", top->vproc_top->core->instruction_wb_pc);
+                            fprintf(inst_trace, "%08x\n", top->vproc_top->core->instruction_wb);
+                        }
                     }
                 }
                 
