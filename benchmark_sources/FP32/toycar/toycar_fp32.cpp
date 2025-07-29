@@ -51,7 +51,10 @@ int run_test()
         float sum = 0;
         for (size_t j = 0; j < toycar_fp32_input_data_len[i]; j++)
         {
-            sum += pow((float)toycar_fp32_input_data[i][j] - interpreter.output(0)->data.f[j], 2);
+            float diff1 = (float)toycar_fp32_input_data[i][j] - (float)interpreter.output(0)->data.f[j];
+            float square = diff1*diff1;
+            sum += square;
+            //sum += pow((float)toycar_fp32_input_data[i][j] - (float)interpreter.output(0)->data.f[j], 2);
         }
         sum /= (float)toycar_fp32_input_data_len[i];
 
