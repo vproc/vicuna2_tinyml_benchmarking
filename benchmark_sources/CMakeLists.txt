@@ -29,7 +29,7 @@ add_definitions(-DTF_LITE_USE_GLOBAL_MAX)
 add_definitions(-DTF_LITE_USE_GLOBAL_MIN)
 add_definitions(-DTF_LITE_STATIC_MEMORY)
 add_definitions(-DTF_LITE_USE_GLOBAL_CMATH_FUNCTIONS)
-if(NOT USE_F)
+if(NOT RISCV_F)
     add_definitions(-DTFLITE_EMULATE_FLOAT)                         #Might have issues with this for F extensions
 endif()
 add_definitions(-fno-rtti)          #Needed for GCC to resolve virtual delete function scope issue
