@@ -1,5 +1,6 @@
 #
 # Copyright (C) 2024 Chair of Electronic Design Automation, TUM.
+# Copyright (C) 2025 Embedded Computing Systems, TU Wien.
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -16,6 +17,7 @@
 # limitations under the License.
 #
 add_Benchmark(toycar_int8 ${CMAKE_CURRENT_SOURCE_DIR} ${BUILD_DIR}/benchmark_sources/Int8/toycar)
+add_Benchmark_Spike(toycar_int8 ${CMAKE_CURRENT_SOURCE_DIR} ${BUILD_DIR}/benchmark_sources/Int8/toycar)
 
 
 

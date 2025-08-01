@@ -51,3 +51,9 @@ cd scripts
 ######
 
 ./download_tflm.sh
+
+######
+#   spike setup
+######
+
+./download_spike.sh

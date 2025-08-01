@@ -75,4 +75,55 @@ endmacro()
 
 
 
+macro(add_Benchmark_Spike TEST SOURCE_DIR TEST_BUILD_DIR)
+
+    set(TEST_NAME ${TEST}_Spike) #need to add a suffix, ctest doesnt allow 'test' as a test name
+    
+    add_executable(${TEST_NAME})
+
+    target_include_directories(${TEST_NAME} PRIVATE
+        ${SOURCE_DIR}
+        ${SOURCE_DIR}/model_data
+    )
+
+    target_sources(${TEST_NAME} PUBLIC
+        ${SOURCE_DIR}/${TEST}.cpp
+        ${SOURCE_DIR}/${TEST}_data/${TEST}_input_data.cc
+        ${SOURCE_DIR}/${TEST}_data/${TEST}_input_data.h
+        ${SOURCE_DIR}/${TEST}_data/${TEST}_model_data.cc
+        ${SOURCE_DIR}/${TEST}_data/${TEST}_model_data.h
+        ${SOURCE_DIR}/${TEST}_data/${TEST}_model_settings.cc
+        ${SOURCE_DIR}/${TEST}_data/${TEST}_model_settings.h
+        ${SOURCE_DIR}/${TEST}_data/${TEST}_output_data_ref.cc
+        ${SOURCE_DIR}/${TEST}_data/${TEST}_output_data_ref.h
+    )
+
+    #Set Linker
+    target_link_options(${TEST_NAME} PRIVATE "-nostartfiles")
+
+    target_link_options(${TEST_NAME} PRIVATE "-T${BSP_TOP}/Spike_Support/lld_link.ld")
+
+    
+
+
+    #Link BSP
+    target_link_libraries(${TEST_NAME} PRIVATE bsp_Spike tflm)   
+
+    add_custom_command(TARGET ${TEST_NAME}
+                        COMMAND ${RISCV_LLVM_PREFIX}/llvm-objdump -D ${TEST_NAME}.elf > ${TEST_NAME}_dump.txt)    
+	              
+
+    #Add Test
+    add_test(NAME ${TEST_NAME} 
+             COMMAND ${SPIKE_DIR}/spike --isa=rv32imf_zicntr_zihpm_zfh_zve32f_zvfh_zvl${VREG_W}b ${TEST_BUILD_DIR}/${TEST_NAME}.elf   #TODO: PASS ALL THESE ARGUMENTS IN FROM USER
+             WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/../..)
+             
+    set_tests_properties(${TEST_NAME} PROPERTIES TIMEOUT 0) #TODO: Find a reasonable timeout for these tests
+
+    message(STATUS "Successfully added ${TEST_NAME}")
+
+endmacro()
+
+
+
 

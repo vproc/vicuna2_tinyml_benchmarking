@@ -1,5 +1,6 @@
 #
 # Copyright (C) 2024 Chair of Electronic Design Automation, TUM.
+# Copyright (C) 2025 Embedded Computing Systems, TU Wien.
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -16,4 +17,5 @@
 # limitations under the License.
 #
 
-add_Benchmark(toycar_fp16 ${CMAKE_CURRENT_SOURCE_DIR} ${BUILD_DIR}/benchmark_sources/FP16/toycar_16_bit_ops) # Doesnt link with GCC
+add_Benchmark(toycar_fp16 ${CMAKE_CURRENT_SOURCE_DIR} ${BUILD_DIR}/benchmark_sources/FP16/toycar_16_bit_ops)
+add_Benchmark_Spike(toycar_fp16 ${CMAKE_CURRENT_SOURCE_DIR} ${BUILD_DIR}/benchmark_sources/FP16/toycar_16_bit_ops)

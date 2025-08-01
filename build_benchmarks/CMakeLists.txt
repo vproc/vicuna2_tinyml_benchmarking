@@ -30,6 +30,8 @@ set(BUILD_DIR ${CMAKE_CURRENT_SOURCE_DIR}/build)
 set(MODEL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../build_model/build)
 set(BENCHMARKS_TOP ${CMAKE_CURRENT_SOURCE_DIR}/../benchmark_sources)
 set(BSP_TOP ${CMAKE_CURRENT_SOURCE_DIR}/../bsp)
+set(TOOLCHAIN_TOP ${CMAKE_CURRENT_SOURCE_DIR}/../Toolchain)
+set(SPIKE_DIR ${TOOLCHAIN_TOP}/riscv-isa-sim/build/)
 
 
 #####

@@ -15,6 +15,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-add_Benchmark(toycar_fp32 ${CMAKE_CURRENT_SOURCE_DIR} ${BUILD_DIR}/benchmark_sources/FP32/toycar) # Doesnt link with GCC
-
+add_Benchmark(toycar_fp32 ${CMAKE_CURRENT_SOURCE_DIR} ${BUILD_DIR}/benchmark_sources/FP32/toycar)
+add_Benchmark_Spike(toycar_fp32 ${CMAKE_CURRENT_SOURCE_DIR} ${BUILD_DIR}/benchmark_sources/FP32/toycar)
 
