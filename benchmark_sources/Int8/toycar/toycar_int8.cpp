@@ -48,14 +48,16 @@ int run_test()
             return -1;
         }
 
-        uint32_t sum = 0;
+        int32_t sum = 0;
         for (size_t j = 0; j < toycar_int8_input_data_len[i]; j++)
         {
-            sum += pow((int8_t)toycar_int8_input_data[i][j] - interpreter.output(0)->data.int8[j], 2);
+            int32_t diff1 = (int8_t)toycar_int8_input_data[i][j] - (int8_t)interpreter.output(0)->data.int8[j];
+            int32_t square = diff1*diff1;
+            sum += square;
         }
         sum /= toycar_int8_input_data_len[i];
 
-        uint32_t diff = abs(sum - toycar_int8_output_data_ref[i]);
+        int32_t diff = abs(sum - toycar_int8_output_data_ref[i]);
 
         
         //store_result_int(diff);
