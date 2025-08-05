@@ -175,7 +175,8 @@ set(FPU_SS_SOURCE   ${DESIGN_RTL_DIR_FPU_SS}/fpu_ss_pkg.sv                      
 set(FPU_SS_INCLUDE  ${DESIGN_RTL_DIR_FPU_SS} )                                          #FPU_SS Include Dirs
 
 
-add_subdirectory(../rtl/vproc_rtl vicuna) # Include vicuna and cvfpu with VICUNA_SRCS, VICUNA_INCS
+set(VICUNA_TOP_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/../rtl/vproc_rtl )  
+add_subdirectory(${VICUNA_TOP_DIR} vicuna) # Include vicuna and cvfpu with VICUNA_SRCS, VICUNA_INCS
 
 ### TRACE FLAGS
 
@@ -199,8 +200,17 @@ if(FORCE_ALIGNED_READS)
     set(READ_MODE -DFORCE_ALIGNED_READS)
 endif()
 
-#Create the verilated model 
-add_executable(verilated_model verilator_main.cpp)
+#Create the verilated model.  Include verilator_main.cpp and verilator_support.h functions 
+add_executable(verilated_model)
+
+target_include_directories(verilated_model PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${VICUNA_TOP_DIR})
+
+target_sources(verilated_model PUBLIC
+    ${VICUNA_TOP_DIR}/verilator_support.h
+    ${VICUNA_TOP_DIR}/verilator_support.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/verilator_main.cpp)
 
 verilate(verilated_model SOURCES  ${CV32E40X_SOURCE} ${VICUNA_SRCS} ${FPU_SS_SOURCE} ${CMAKE_CURRENT_SOURCE_DIR}/vproc_top.sv
                INCLUDE_DIRS  ${CV32E40X_INCLUDE} ${VICUNA_INCS} ${FPU_SS_INCLUDE} ${CMAKE_CURRENT_SOURCE_DIR}
