@@ -46,6 +46,7 @@ set(MEM_SZ 4194304)
 ######################
 
 if(${RISCV_ARCH} STREQUAL "rv32im") #Build only CV32E40X
+    #Verilog Flags
     set(XIF_FLAG "" )
     set(RISCV_F "" )
     set(RISCV_ZFH "" )
@@ -54,44 +55,66 @@ if(${RISCV_ARCH} STREQUAL "rv32im") #Build only CV32E40X
     set(RISCV_ZVFH "" )
 
 elseif(${RISCV_ARCH} STREQUAL "rv32imf") #Build CV32E40X with FPU on the Xif interface
+    #Verilog Flags
     set(XIF_FLAG "-DXIF_ON" )
     set(RISCV_F "-DRISCV_F" )
     set(RISCV_ZFH "" )
     set(RISCV_ZVE32X "" )
     set(RISCV_ZVE32F "" )
     set(RISCV_ZVFH "" )
+    #C++ Flags
+    add_definitions(-DRISCV_F)
 
 elseif(${RISCV_ARCH} STREQUAL "rv32imf_zfh") #Build CV32E40X with FPU on the Xif interface with half-float support
+    #Verilog Flags
     set(XIF_FLAG "-DXIF_ON" )
     set(RISCV_F "-DRISCV_F" )
     set(RISCV_ZFH "-DRISCV_ZFH" )
     set(RISCV_ZVE32X "" )
     set(RISCV_ZVE32F "" )
     set(RISCV_ZVFH "" )
+    #C++ Flags
+    add_definitions(-DRISCV_F)
+    add_definitions(-DRISCV_ZFH)
 
 elseif(${RISCV_ARCH} STREQUAL "rv32im_zve32x") #Build CV32E40X with Vicuna on the Xif interface
+    #Verilog Flags
     set(XIF_FLAG "-DXIF_ON" )
     set(RISCV_F "" )
     set(RISCV_ZFH "" )
     set(RISCV_ZVE32X "-DRISCV_ZVE32X" )
     set(RISCV_ZVE32F "" )
     set(RISCV_ZVFH "" )
+    #C++ Flags
+    add_definitions(-DRISCV_ZVE32X)
 
 elseif(${RISCV_ARCH} STREQUAL "rv32imf_zve32f") #Build CV32E40X with Vicuna and FPU on the Xif interface
+    #Verilog Flags
     set(XIF_FLAG "-DXIF_ON" )
     set(RISCV_F "-DRISCV_F" )
     set(RISCV_ZFH "" )
     set(RISCV_ZVE32X "-DRISCV_ZVE32X" )
     set(RISCV_ZVE32F "-DRISCV_ZVE32F" )
     set(RISCV_ZVFH "" )
+    #C++ Flags
+    add_definitions(-DRISCV_F)
+    add_definitions(-DRISCV_ZVE32X)
+    add_definitions(-DRISCV_ZVE32F)
 
 elseif(${RISCV_ARCH} STREQUAL "rv32imf_zfh_zve32f_zvfh") #Build CV32E40X with Vicuna (+floating point + half precision float) and FPU on the Xif interface
+    #Verilog Flags
     set(XIF_FLAG "-DXIF_ON" )
     set(RISCV_F "-DRISCV_F" )
     set(RISCV_ZFH "-DRISCV_ZFH" )
     set(RISCV_ZVE32X "-DRISCV_ZVE32X" )
     set(RISCV_ZVE32F "-DRISCV_ZVE32F" )
     set(RISCV_ZVFH "-DRISCV_ZVFH" )
+    #C++ Flags
+    add_definitions(-DRISCV_F)
+    add_definitions(-DRISCV_ZFH)
+    add_definitions(-DRISCV_ZVE32X)
+    add_definitions(-DRISCV_ZVE32F)
+    add_definitions(-DRISCV_ZVFH)
 
 else()
     message(FATAL_ERROR "Unsupported RISCV_ARCH selected")
@@ -181,7 +204,7 @@ add_subdirectory(${VICUNA_TOP_DIR} vicuna) # Include vicuna and cvfpu with VICUN
 ### TRACE FLAGS
 
 if(TRACE)
-    add_definitions(-DTRACE_VCD) #This does nothing.  TODO: Confirm and remove.
+    add_definitions(-DTRACE_VCD) #Add flag for C++ sources.
     set(TRACE TRACE)
     
     if(TRACE_FULL)
