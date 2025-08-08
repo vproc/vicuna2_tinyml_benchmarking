@@ -115,7 +115,7 @@ macro(add_Benchmark_Spike TEST SOURCE_DIR TEST_BUILD_DIR)
 
     #Add Test
     add_test(NAME ${TEST_NAME} 
-             COMMAND ${SPIKE_DIR}/spike --isa=rv32imf_zicntr_zihpm_zfh_zve32f_zvfh_zvl${VREG_W}b ${TEST_BUILD_DIR}/${TEST_NAME}.elf   #TODO: PASS ALL THESE ARGUMENTS IN FROM USER
+             COMMAND ${SPIKE_DIR}/spike --isa=rv32imf_zicntr_zihpm_zfh_zve32f_zvfh_zvl${MIN_VLEN}b --log-commits --log=/home/parker/Desktop/Vicuna_Repo_Refactor/benchmarks/tinyml_benchmarks/build_benchmarks/build/Testing/register_commits_Spike.txt ${TEST_BUILD_DIR}/${TEST_NAME}.elf   #TODO: PASS ALL THESE ARGUMENTS IN FROM USER
              WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/../..)
              
     set_tests_properties(${TEST_NAME} PROPERTIES TIMEOUT 0) #TODO: Find a reasonable timeout for these tests
