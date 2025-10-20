@@ -77,6 +77,21 @@ ctest
 
 Simulation results and traces are available in the **/build_benchmarks/build/Testing** directory after running the tests
 
+## Publication
+
+If you use Vicuna2.0 in academic work, please cite
+[our publication]([https://doi.org/10.4230/LIPIcs.ECRTS.2021.1](https://doi.org/10.1109/Austrochip67945.2025.11183718)):
+
+```
+@inproceedings{inproceedings,
+author = {Jones, Jefferson and Kempen, Philipp and Mueller-Gritschneder, Daniel},
+year = {2025},
+month = {09},
+pages = {69-72},
+title = {Vicuna2.0: RISC-V Embedded Vector Unit with Half-Precision Floating-Point Support for TinyML},
+doi = {10.1109/Austrochip67945.2025.11183718}
+}
+```
 
 
 
