@@ -19,7 +19,7 @@
 
 set -e
 
-cd ../Toolchain
+cd ../toolchain
 
 
 echo "Downloading LLVM"

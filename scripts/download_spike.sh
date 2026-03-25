@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ../Toolchain
+cd ../toolchain
 
 #Build GCC
 echo "Downloading Spike"

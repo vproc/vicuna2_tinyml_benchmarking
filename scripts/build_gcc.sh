@@ -3,7 +3,7 @@
 # Arguments: $1 - architecture for gcc
 #            $2 - ABI
 
-cd ../Toolchain
+cd ../toolchain
 
 INSTALL_PATH=$PWD/GCC/$1
 

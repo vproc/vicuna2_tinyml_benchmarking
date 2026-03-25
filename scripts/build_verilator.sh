@@ -3,7 +3,7 @@
 
 INSTALL_PATH=$PWD/verilator
 
-cd ../Toolchain
+cd ../toolchain
 
 #Download
 git clone https://github.com/verilator/verilator

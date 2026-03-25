@@ -20,7 +20,7 @@
 # Prevent silent failures
 set -euo pipefail
 
-cd ../Benchmark_Sources
+cd ../benchmark_sources
 
 echo "Download TFLM sources."
 if [ ! -d "tflite-micro" ]; then

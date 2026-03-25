@@ -17,7 +17,7 @@ message(STATUS "CMake Version ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}.${CM
 ####################
 
 project(Verilated-Builds LANGUAGES C CXX DESCRIPTION "Environment for Verilating Models")
-find_package(verilator HINTS ${CMAKE_CURRENT_SOURCE_DIR}/../Toolchain/verilator)
+find_package(verilator HINTS ${CMAKE_CURRENT_SOURCE_DIR}/../toolchain/verilator)
 
 # See whats going in CMake while getting the build process up and running
 set(CMAKE_VERBOSE_MAKEFILE ON)
