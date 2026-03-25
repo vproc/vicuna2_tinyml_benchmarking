@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 add_Benchmark(toycar_int8 ${CMAKE_CURRENT_SOURCE_DIR} ${BUILD_DIR}/benchmark_sources/Int8/toycar)
-add_Benchmark_Spike(toycar_int8 ${CMAKE_CURRENT_SOURCE_DIR} ${BUILD_DIR}/benchmark_sources/Int8/toycar)
+#add_Benchmark_Spike(toycar_int8 ${CMAKE_CURRENT_SOURCE_DIR} ${BUILD_DIR}/benchmark_sources/Int8/toycar)
 
 
 

@@ -12,6 +12,7 @@
 extern "C" {
 #include "runtime.h"
 #include "uart.h"
+#include "uart.c"
 #include "terminate_benchmark.h"
 }
 
@@ -29,6 +30,8 @@ int run_test()
     resolver.AddFullyConnected();
 
     tflite::MicroInterpreter interpreter(model, resolver, tensor_arena, tensor_arena_size);
+
+    uart_printf("Started Program\n");
 
     if (interpreter.AllocateTensors() != kTfLiteOk)
     {

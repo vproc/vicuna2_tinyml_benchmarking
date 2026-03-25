@@ -185,7 +185,7 @@ int main(int argc, char **argv) {
 
         //UART Data Write.  Only takes lowest byte.  TODO: Verify functionality
         char w_port;
-        if (check_memmapio(top->mem_addr_o, (top->mem_req_o && top->mem_we_o), 8, (unsigned char*)&(top->mem_wdata_o), 0xFF000000u, &w_port)){
+        if (check_memmapio(top->mem_addr_o, (top->mem_req_o && top->mem_we_o), 8, (unsigned char*)&(top->mem_wdata_o), 0x400u, &w_port)){
             putc(w_port, stdout);
         }
 
