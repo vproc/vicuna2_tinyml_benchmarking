@@ -1,0 +1,1 @@
+add_Benchmark(resnet8_fp32 ${CMAKE_CURRENT_SOURCE_DIR} ${BUILD_DIR}/benchmark_sources/FP32/resnet8)
